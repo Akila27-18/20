@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Gym Membership Signup</h2>
+<form method="POST" novalidate>
+  {{ form.hidden_tag() }}
+
+  <div class="mb-3">
+    {{ form.name.label(class="form-label") }}
+    {{ form.name(class="form-control", placeholder="Enter your name") }}
+    {% if form.name.errors %}
+      <div class="text-danger">{{ form.name.errors[0] }}</div>
+    {% endif %}
+  </div>
+
+  <div class="mb-3">
+    {{ form.age.label(class="form-label") }}
+    {{ form.age(class="form-control", placeholder="Enter your age") }}
+    {% if form.age.errors %}
+      <div class="text-danger">{{ form.age.errors[0] }}</div>
+    {% endif %}
+  </div>
+
+  <div class="mb-3">
+    {{ form.email.label(class="form-label") }}
+    {{ form.email(class="form-control", placeholder="Enter your email") }}
+    {% if form.email.errors %}
+      <div class="text-danger">{{ form.email.errors[0] }}</div>
+    {% endif %}
+  </div>
+
+  <div class="mb-3">
+    {{ form.plan.label(class="form-label") }}
+    <div>
+      {% for subfield in form.plan %}
+        <div class="form-check form-check-inline">
+          {{ subfield(class="form-check-input") }}
+          {{ subfield.label(class="form-check-label") }}
+        </div>
+      {% endfor %}
+    </div>
+    {% if form.plan.errors %}
+      <div class="text-danger">{{ form.plan.errors[0] }}</div>
+    {% endif %}
+  </div>
+
+  <div class="mb-3 form-check">
+    {{ form.terms(class="form-check-input") }}
+    {{ form.terms.label(class="form-check-label") }}
+    {% if form.terms.errors %}
+      <div class="text-danger">{{ form.terms.errors[0] }}</div>
+    {% endif %}
+  </div>
+
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}
